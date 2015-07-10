@@ -115,6 +115,7 @@ header {
   transition: $base-transition;
 
   background-color: $light-orange;
+  box-shadow: 0 5px 5px 0 rgba(50, 50, 50, .75);
 
   @extend .clearfix;
   .nav,
@@ -241,6 +242,7 @@ article {
 
   border-radius: 0 $base-border-radius $base-border-radius 0;
   background-color: $light-orange;
+  box-shadow: 5px 0 5px 0 rgba(50, 50, 50, .75);
   ul {
     width: 100%;
   }
@@ -385,6 +387,7 @@ footer {
   text-align: center;
 
   background-color: $light-orange;
+  box-shadow: 0 -5px 5px 0 rgba(50, 50, 50, .75);
   p {
     margin: 0;
     padding: .5em 2em 0;
