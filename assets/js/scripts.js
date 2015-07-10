@@ -28,12 +28,12 @@ $( document ).ready(function() {
     x = w.innerWidth || e.clientWidth || g.clientWidth,
     y = w.innerHeight|| e.clientHeight|| g.clientHeight,
     section = $('section'),
-    sectionHeight = y - 80 - 120,
+    sectionHeight = y,
     leftSidebar = $('.left-sidebar'),
     leftSidebarH = $('.left-sidebar').height();
 
     // section width and height
-    $(section).width(x);
+    // $(section).width(x);
     $(section).height(sectionHeight);
     // set left sidebar top position
     var leftSidebarTop = (sectionHeight - leftSidebarH) / 2;
@@ -41,11 +41,30 @@ $( document ).ready(function() {
 
     // close button
 
-    $('button').click( function() {
+    $('.left-sidebar button').click(function () {
       var parent = $(this).parent();
       $(parent).toggleClass('current-block');
-      var parentWidth = $(parent).width();
-      $(parent).css({ left: -parentWidth-30+'px'})
+    });
+
+    $('.toggle-footer').click( function() {
+      var parent = $('footer');
+      $(parent).toggleClass('current-block');
+      $(this).toggleClass('toggled');
+
+    })
+
+    $('.toggle-header').click( function() {
+      var parent = $('header');
+      $(parent).toggleClass('current-block');
+      $(this).toggleClass('toggled');
+    })
+
+    $('.toggle-all').click( function() {
+      var parent = $('header, footer, .left-sidebar'),
+        parrentSupport = $('.toggle-header, .toggle-footer');
+      $(parent).toggleClass('current-block');
+      $(parrentSupport).toggleClass('toggled');
+      $(this).toggleClass('toggled');
     })
 
 

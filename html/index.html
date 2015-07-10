@@ -8,6 +8,7 @@
     <title> </title>
 
     <link href="http://www.google-analytics.com/" rel="dns-prefetch"><!-- dns prefetch -->
+
     <!-- meta -->
 
     <!-- icons -->
@@ -16,6 +17,7 @@
     <!-- css + javascript -->
     <link rel="stylesheet" href="css/main.css" media="all">
     <script type="text/javascript" src="///cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
 <!-- wrapper -->
@@ -47,12 +49,12 @@
         <li><a href="">РЕГИСТРАЦИЯ</a></li>
       </ul>
     </div>
-    <button>СВЕРНУТЬ</button>
+
   </header><!-- /header -->
 
   <section role="main">
 
-    <article class="map">
+    <article id="map" class="map">
 
     </article><!-- map -->
 
@@ -66,23 +68,73 @@
         <li><label>Тяжелые грузовики  (частичная погрузка) <input type="checkbox"></label></li>
         <li class="inactive"><label>Занят <input type="checkbox"></label></li>
       </ul>
-      <button>СВЕРНУТЬ</button>
+      <button><span class="closer">СВЕРНУТЬ</span><span class="opener">РАЗВЕРНУТЬ</span></button>
 
     </aside><!-- /.left-sidebar -->
 
-    <button class="toggle-all">СВЕРНУТЬ ВСЁ</button><!-- /.toggle-all -->
+    <button class="toggle-header"><span class="closer">СВЕРНУТЬ</span><span class="opener">РАЗВЕРНУТЬ</span></button>
+
+    <button class="toggle-all"><span class="closer">СВЕРНУТЬ ВСЁ</span><span class="opener">РАЗВЕРНУТЬ ВСЁ</span></button><!-- /.toggle-all -->
+
+    <button class="toggle-footer"><span class="closer">СВЕРНУТЬ</span><span class="opener">РАЗВЕРНУТЬ</span></button>
 
   </section><!-- /section -->
 </div><!-- /wrapper -->
 
 <footer role="contentinfo">
-  <button>СВЕРНУТЬ</button>
+
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, eum praesentium! Consectetur, ducimus, ullam. Illo id placeat quibusdam ipsam excepturi architecto rerum repudiandae, porro quos facilis itaque, obcaecati tempora dolores.</p>
 </footer><!-- /footer -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
     <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript">
+      ymaps.ready(function () {
+      var map = new ymaps.Map('map', {
+          center: [55.7, 37.6],
+          zoom: 10,
+          controls: []
+      });
 
+    // Создание метки с квадратной активной областью.
+    var squareLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container"><div class="evac-active"></div></div>');
+
+    var squarePlacemark = new ymaps.Placemark(
+        [55.725118, 37.682145], {
+            hintContent: 'Доступнйы эвакуатор, улица такая-то'
+        }, {
+            iconLayout: squareLayout,
+            iconShape: {
+                type: 'Rectangle',
+                // Прямоугольник описывается в виде двух точек - верхней левой и нижней правой.
+                coordinates: [
+                    [-25, -25], [25, 25]
+                ]
+            }
+        }
+    );
+    map.geoObjects.add(squarePlacemark);
+
+    // Создание метки с круглой активной областью.
+    var circleLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container"><div class="evac-inactive"></div></div>');
+
+    var circlePlacemark = new ymaps.Placemark(
+        [55.783202, 37.605584], {
+            hintContent: 'Эвакуатор эвакуирует другой эвакуатор на улице эвакуаторной'
+        }, {
+            iconLayout: circleLayout,
+            // Описываем фигуру активной области "Круг".
+            iconShape: {
+                type: 'Circle',
+                // Круг описывается в виде центра и радиуса
+                coordinates: [0, 0],
+                radius: 25
+            }
+        }
+    );
+    map.geoObjects.add(circlePlacemark);
+});
+    </script>
 </body>
 </html>
