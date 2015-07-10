@@ -11,22 +11,33 @@ $icon-home: x y offset_x offset_y width height total_width total_height image_pa
 At the bottom of this section, we provide information about the spritesheet itself
 $spritesheet: width height image $spritesheet-sprites;
 */
-$sprite-logo-name: 'sprite-logo';
-$sprite-logo-x: 0px;
-$sprite-logo-y: 0px;
-$sprite-logo-offset-x: 0px;
-$sprite-logo-offset-y: 0px;
-$sprite-logo-width: 512px;
-$sprite-logo-height: 512px;
-$sprite-logo-total-width: 512px;
-$sprite-logo-total-height: 512px;
-$sprite-logo-image: '../img/sprite.png';
-$sprite-logo: (0px, 0px, 0px, 0px, 512px, 512px, 512px, 512px, '../img/sprite.png', 'sprite-logo', );
-$spritesheet-width: 512px;
-$spritesheet-height: 512px;
+$sprite-ico-active-name: 'sprite-ico-active';
+$sprite-ico-active-x: 0px;
+$sprite-ico-active-y: 0px;
+$sprite-ico-active-offset-x: 0px;
+$sprite-ico-active-offset-y: 0px;
+$sprite-ico-active-width: 34px;
+$sprite-ico-active-height: 35px;
+$sprite-ico-active-total-width: 68px;
+$sprite-ico-active-total-height: 35px;
+$sprite-ico-active-image: '../img/sprite.png';
+$sprite-ico-active: (0px, 0px, 0px, 0px, 34px, 35px, 68px, 35px, '../img/sprite.png', 'sprite-ico-active', );
+$sprite-ico-inactive-name: 'sprite-ico-inactive';
+$sprite-ico-inactive-x: 34px;
+$sprite-ico-inactive-y: 0px;
+$sprite-ico-inactive-offset-x: -34px;
+$sprite-ico-inactive-offset-y: 0px;
+$sprite-ico-inactive-width: 34px;
+$sprite-ico-inactive-height: 35px;
+$sprite-ico-inactive-total-width: 68px;
+$sprite-ico-inactive-total-height: 35px;
+$sprite-ico-inactive-image: '../img/sprite.png';
+$sprite-ico-inactive: (34px, 0px, -34px, 0px, 34px, 35px, 68px, 35px, '../img/sprite.png', 'sprite-ico-inactive', );
+$spritesheet-width: 68px;
+$spritesheet-height: 35px;
 $spritesheet-image: '../img/sprite.png';
-$spritesheet-sprites: ($sprite-logo, );
-$spritesheet: (512px, 512px, '../img/sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($sprite-ico-active, $sprite-ico-inactive, );
+$spritesheet: (68px, 35px, '../img/sprite.png', $spritesheet-sprites, );
 
 /*
 The provided mixins are intended to be used with the array-like variables

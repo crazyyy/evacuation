@@ -17,3 +17,38 @@
 }());
 
 // Place any jQuery/helper plugins in here.
+
+// set SECTION size
+
+$( document ).ready(function() {
+  var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight,
+    section = $('section'),
+    sectionHeight = y - 80 - 120,
+    leftSidebar = $('.left-sidebar'),
+    leftSidebarH = $('.left-sidebar').height();
+
+    // section width and height
+    $(section).width(x);
+    $(section).height(sectionHeight);
+    // set left sidebar top position
+    var leftSidebarTop = (sectionHeight - leftSidebarH) / 2;
+    $(leftSidebar).css({ top: leftSidebarTop +'px'});
+
+    // close button
+
+    $('button').click( function() {
+      var parent = $(this).parent();
+      $(parent).toggleClass('current-block');
+      var parentWidth = $(parent).width();
+      $(parent).css({ left: -parentWidth-30+'px'})
+    })
+
+
+});
+
+
