@@ -39,29 +39,48 @@ $( document ).ready(function() {
     var leftSidebarTop = (sectionHeight - leftSidebarH) / 2;
     $(leftSidebar).css({ top: leftSidebarTop +'px'});
 
-    // close button
 
-    $('.left-sidebar button').click(function () {
+    // close button
+    var leftSidebarButton = $('.left-sidebar button'),
+      footerButton = $('.toggle-footer'),
+      headerButton = $('.toggle-header'),
+      allButton = $('.toggle-all');
+
+    // Left sidebar
+    $(leftSidebarButton).click(function () {
       var parent = $(this).parent();
       $(parent).toggleClass('current-block');
+      // toggle AllToggler if other blocks hidden
+      if ( $('.left-sidebar').hasClass('current-block') && $('header').hasClass('current-block') && $('footer').hasClass('current-block') ) {
+        $(allButton).toggleClass('toggled');
+      };
     });
 
-    $('.toggle-footer').click( function() {
+    // footer
+    $(footerButton).click( function() {
       var parent = $('footer');
       $(parent).toggleClass('current-block');
       $(this).toggleClass('toggled');
-
+      // toggle AllToggler if other blocks hidden
+      if ( $('.left-sidebar').hasClass('current-block') && $('header').hasClass('current-block') && $('footer').hasClass('current-block') ) {
+        $(allButton).toggleClass('toggled');
+      };
     })
 
-    $('.toggle-header').click( function() {
+    // header
+    $(headerButton).click( function() {
       var parent = $('header');
       $(parent).toggleClass('current-block');
       $(this).toggleClass('toggled');
+      // toggle AllToggler if other blocks hidden
+      if ( $('.left-sidebar').hasClass('current-block') && $('header').hasClass('current-block') && $('footer').hasClass('current-block') ) {
+        $(allButton).toggleClass('toggled');
+      };
     })
 
-    $('.toggle-all').click( function() {
+    $(allButton).click( function() {
       var parent = $('header, footer, .left-sidebar'),
-        parrentSupport = $('.toggle-header, .toggle-footer');
+        parrentSupport = $(headerButton, footerButton);
       $(parent).toggleClass('current-block');
       $(parrentSupport).toggleClass('toggled');
       $(this).toggleClass('toggled');
